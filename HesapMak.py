@@ -1,18 +1,18 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow,QPushButton
 from PyQt5 import uic
 class App(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.win = uic.loadUi("GUI/HesapMak.ui")
-        self.win.b1.clicked.connect(self.tiklandi)
-        self.win.txtSonuc.textChanged.connect(self.temizle)
+        self.win = uic.loadUi("GUI/HesapMak.ui",self)
+        for i in range(0,10):
+            self.findChild(QPushButton,"b"+str(i)).clicked.connect(self.tiklandi)
+        # self.win.txtSonuc.textChanged.connect(self.temizle)
         self.win.show()        
 
     def tiklandi(self):
-        sonuc = self.win.txtSonuc.text()
-        print(sonuc)
-        self.win.txtSonuc.setText("Hobaaaaaa")
+        dugme = self.sender()
+        self.win.txtSonuc.setText(dugme.text())
 
     def temizle(self):
         sonuc = list(self.win.txtSonuc.text())
