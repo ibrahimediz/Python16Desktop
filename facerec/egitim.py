@@ -6,7 +6,7 @@ import os,json
 
 yol = 'dataset'
 tani = cv2.face.LBPHFaceRecognizer_create()
-detector = cv2.CascadeClassifier("..\Opencv\cascades\haarcascade_frontalface_default.xml")
+detector = cv2.CascadeClassifier("Opencv\cascades\haarcascade_frontalface_default.xml")
 
 
 def getImageAndLabels(yol):
@@ -36,6 +36,6 @@ def getImageAndLabels(yol):
     return faceSamples,ids
 
 face,ids = getImageAndLabels(yol)
-tani.train(faces,np.array(ids))
+tani.train(face,np.array(ids))
 tani.write('trainer.yml')
 
